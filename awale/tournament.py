@@ -30,7 +30,6 @@ def run_duel(factory_a: PlayerFactory, factory_b: PlayerFactory, games: int = 10
 
 
 def default_tournament(games_per_duel: int = 20) -> Dict[str, Dict[str, int]]:
-    # The default is intentionally 20 so it runs quickly. Use --games 100 for the assignment report.
     duels: Dict[str, Tuple[PlayerFactory, PlayerFactory]] = {
         "MinMax score vs Stupid Bot": (lambda: MinMax(depth=4, heuristic="score"), StupidBot),
         "Stupid Bot vs Greedy Tactic": (StupidBot, GreedyTactic),

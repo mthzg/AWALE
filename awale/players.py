@@ -152,7 +152,6 @@ class MinMax(Player):
         opp_moves = len(game.legal_moves(opponent))
         own_seeds = game.seeds_on_side(player)
         opp_seeds = game.seeds_on_side(opponent)
-        # Distinct objective: keep choices open and avoid starvation positions.
         return 2.0 * score_delta + 1.5 * (own_moves - opp_moves) + 0.3 * (own_seeds - opp_seeds)
 
 
@@ -220,8 +219,6 @@ class Sommet:
 
 
 class MCTS(Player):
-    """Monte Carlo Tree Search with random rollout policy."""
-
     def __init__(self, iterations: int = 500, temperature: float = math.sqrt(2.0),
                  time_limit: Optional[float] = None, game: Optional[Awale] = None) -> None:
         super().__init__(f"MCTS({iterations})", game)

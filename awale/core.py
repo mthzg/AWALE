@@ -113,7 +113,6 @@ class Awale:
         captured = self.__sow_and_capture(pit, player)
         self.__scores[player] += captured
 
-        # If the next player cannot play and cannot be fed, collect remaining seeds.
         self.__current_player = 1 - player
         if not self.legal_moves(self.__current_player):
             self.__collect_remaining_seeds()
@@ -128,7 +127,7 @@ class Awale:
         pos = pit
         for _ in range(seeds):
             pos = (pos + 1) % self.NB_PITS
-            if pos == pit:  # standard rule: do not sow into the original pit
+            if pos == pit:
                 pos = (pos + 1) % self.NB_PITS
             self.__board[pos] += 1
 
@@ -141,7 +140,6 @@ class Awale:
         if not captured_pits:
             return 0
 
-        # Starvation rule: do not perform a capture that empties the opponent side.
         opponent_after = self.seeds_on_side(1 - player) - captured
         if opponent_after == 0:
             return 0

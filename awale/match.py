@@ -37,6 +37,5 @@ def play_game(player0: Player, player1: Player, graphical: bool = False,
         gui.refresh()
 
     if turns >= max_turns and not game.finished():
-        # Defensive stop for abnormal loops; the board state remains inspectable.
         pass
     return game.winner_by_score(), game.scores(), game
