@@ -1,5 +1,3 @@
-"""Small Tkinter interface for displaying and playing Awalé."""
-
 from __future__ import annotations
 
 import tkinter as tk

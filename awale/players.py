@@ -1,5 +1,3 @@
-"""Player strategies required by the assignment."""
-
 from __future__ import annotations
 
 import math
@@ -11,8 +9,6 @@ from .core import Awale
 
 
 class Player:
-    """Common base class. Every player owns an Awale instance as requested."""
-
     def __init__(self, name: str, game: Optional[Awale] = None) -> None:
         self._name = name
         self._awale = game if game is not None else Awale()
@@ -33,8 +29,6 @@ class Player:
 
 
 class StupidBot(Player):
-    """Random legal move player."""
-
     def __init__(self, game: Optional[Awale] = None) -> None:
         super().__init__("Stupid Bot", game)
 
@@ -44,12 +38,6 @@ class StupidBot(Player):
 
 
 class GreedyTactic(Player):
-    """Present-position tactic: choose the legal move with immediate gain.
-
-    It does not explore future turns. Ties favor a move that keeps the current
-    player with more seeds on their own side, then a random final tie-break.
-    """
-
     def __init__(self, game: Optional[Awale] = None) -> None:
         super().__init__("Greedy Tactic", game)
 
@@ -68,7 +56,6 @@ class GreedyTactic(Player):
 
 
 class Human(Player):
-    """Human player using a mouse selection from the Tkinter GUI."""
 
     def __init__(self, game: Optional[Awale] = None) -> None:
         super().__init__("Human", game)
@@ -81,7 +68,6 @@ class Human(Player):
 
 
 class MinMax(Player):
-    """MinMax with alpha-beta pruning and two distinct heuristics."""
 
     def __init__(self, depth: int = 4, heuristic: str = "score", game: Optional[Awale] = None) -> None:
         super().__init__(f"MinMax({heuristic}, d={depth})", game)
@@ -171,8 +157,6 @@ class MinMax(Player):
 
 
 class Sommet:
-    """Recursive node used by MCTS."""
-
     def __init__(self, game: Awale, parent: Optional["Sommet"] = None, move: Optional[int] = None) -> None:
         self._awale = game.copy()
         self.__parent = parent

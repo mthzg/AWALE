@@ -1,11 +1,3 @@
-"""Core rules for Awalé / Oware Abapa.
-
-The board is stored as 12 pits:
-- player 0 owns pits 0..5
-- player 1 owns pits 6..11
-Sowing advances by increasing indexes modulo 12.
-"""
-
 from __future__ import annotations
 
 from copy import deepcopy
@@ -13,11 +5,7 @@ from typing import Iterable, List, Optional, Tuple
 
 
 class Awale:
-    """Encapsulates the whole game state and the legal moves.
 
-    The class deliberately exposes copies of the board instead of the internal
-    list, so callers cannot mutate the game state without using ``play``.
-    """
 
     NB_PITS = 12
     PITS_PER_PLAYER = 6
@@ -90,12 +78,7 @@ class Awale:
 
     # ---------- Move handling ----------
     def legal_moves(self, player: Optional[int] = None) -> List[int]:
-        """Return pit indexes that are legal for ``player``.
-
-        A legal move starts from a non-empty pit owned by the player. If the
-        opponent has no seeds, the selected move must feed the opponent whenever
-        at least one such move exists.
-        """
+        
         p = self.__current_player if player is None else player
         candidates = [i for i in self.side_indexes(p) if self.__board[i] > 0]
         if not candidates:
@@ -120,7 +103,6 @@ class Awale:
         return False
 
     def play(self, pit: int) -> int:
-        """Play a move and return the number of captured seeds."""
         if self.__finished:
             raise ValueError("The game is already finished.")
         if pit not in self.legal_moves():

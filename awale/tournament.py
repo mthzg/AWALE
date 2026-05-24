@@ -1,5 +1,3 @@
-"""Tournament/statistics runner for the concours part."""
-
 from __future__ import annotations
 
 from collections import defaultdict
